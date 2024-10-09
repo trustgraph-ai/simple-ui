@@ -1,6 +1,8 @@
 
 import { create } from 'zustand'
 
+import * as prompts from '../prompts';
+
 interface ModelParams {
 
     graphStore : string;
@@ -19,6 +21,8 @@ interface ModelParams {
     relationshipsPrompt : string;
     topicsPrompt : string;
     knowledgeQueryPrompt : string;
+    documentQueryPrompt : string;
+    rowsPrompt : string;
 
     advancedOptions : Set<string>;
 
@@ -38,6 +42,8 @@ interface ModelParams {
     setRelationshipsPrompt : (v : string) => void;
     setTopicsPrompt : (v : string) => void;
     setKnowledgeQueryPrompt : (v : string) => void;
+    setDocumentQueryPrompt : (v : string) => void;
+    setRowsPrompt : (v : string) => void;
 
     setAdvancedOptions : (v: Set<string>) => void;
 }
@@ -56,10 +62,12 @@ export const useModelParamsStore = create<ModelParams>()(
         maxOutputTokens: 1000,
         deploymentConfig: "",
         configUrl: "",
-        definitionsPrompt: "",
-        relationshipsPrompt: "",
-        topicsPrompt: "",
-        knowledgeQueryPrompt: "",
+        definitionsPrompt: prompts.default_definition_prompt,
+        relationshipsPrompt: prompts.default_relationship_prompt,
+        topicsPrompt: prompts.default_topics_prompt,
+        knowledgeQueryPrompt: prompts.default_knowledge_query_prompt,
+        documentQueryPrompt: prompts.default_document_query_prompt,
+        rowsPrompt: prompts.default_rows_prompt,
 
         advancedOptions: new Set<string>(""),
 
@@ -139,6 +147,14 @@ export const useModelParamsStore = create<ModelParams>()(
 
         setKnowledgeQueryPrompt: (v) => set(() => ({
 	    knowledgeQueryPrompt: v
+	})),
+
+        setDocumentQueryPrompt: (v) => set(() => ({
+	    documentQueryPrompt: v
+	})),
+
+        setRowsPrompt: (v) => set(() => ({
+	    rowsPrompt: v
 	})),
 
         setAdvancedOptions: (v) => set(() => ({
