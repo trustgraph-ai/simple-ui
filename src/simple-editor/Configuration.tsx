@@ -77,8 +77,14 @@ const Configuration: React.FC = () => {
     const definitionsPrompt
         = useModelParamsStore((state) => state.definitionsPrompt);
 
+    const relationshipsPrompt
+        = useModelParamsStore((state) => state.relationshipsPrompt);
+
     const setDefinitionsPrompt
         = useModelParamsStore((state) => state.setDefinitionsPrompt);
+
+    const setRelationshipsPrompt
+        = useModelParamsStore((state) => state.setRelationshipsPrompt);
 
     return (
 
@@ -139,7 +145,15 @@ const Configuration: React.FC = () => {
                   Relationships prompt
                 </Typography>
 
-                <p>asdasdasd</p>
+                <Prompt
+                    value={relationshipsPrompt}
+                    onChange={
+                        (v) => {
+                            console.log(v);
+                            setRelationshipsPrompt(v);
+                        }
+                    }
+                />
 
             </CustomTabPanel>
 
