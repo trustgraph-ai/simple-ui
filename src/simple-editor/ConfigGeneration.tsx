@@ -1,12 +1,14 @@
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import { Plumbing } from '@mui/icons-material';
 
 import {
     Button, Typography, Card, CardContent, CardActions, CardHeader,
-    CircularProgress,
+    CircularProgress, Snackbar, IconButton,
 } from '@mui/material';
+import { Close } from '@mui/icons-material';
+
 
 import { generateConfig } from './generate-config';
 import { useModelParamsStore } from './state/ModelParams';
@@ -43,14 +45,7 @@ const ConfigGeneration = () => {
 
     const [errorMessage, setErrorMessage] = useState("");
     const [generating, setGenerating] = useState(false);
-
-    const ErrorMessage = () => {
-        return (
-            <Typography color="error" variant="body2" sx={{mt: 2}}>
-                Configuration generation failed: {errorMessage}
-            </Typography>
-        );
-    };
+    const [open, setOpen] = React.useState(false);
 
     const generate = () => {
 
@@ -77,17 +72,51 @@ const ConfigGeneration = () => {
             }
         ).catch(
             err => {
-                setGenerating(false);
                 console.log(err);
+                setGenerating(false);
+                setOpen(true);
                 setConfigUrl("");
-                setErrorMessage(err);
+                setErrorMessage(
+                    `Configuration generation failed: ${err}`
+                );
             }
         );
 
     }
 
+    const handleClick = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (
+        event: React.SyntheticEvent | Event,
+        reason?: SnackbarCloseReason,
+    ) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
+
+    const action = (
+      <React.Fragment>
+          <Button color="primary" size="small" onClick={handleClose}>
+            CLOSE
+          </Button>
+          <IconButton
+              size="small"
+              aria-label="close"
+              color="inherit"
+              onClick={handleClose}
+          >
+              <Close fontSize="small" />
+          </IconButton>
+      </React.Fragment>
+    );
+
     return (
         <>
+
             <Card sx={{ minWidth: 275, mt: 4 }}>
                 <CardHeader
                     avatar={<Plumbing color="primary" fontSize="large"/>}
@@ -99,15 +128,21 @@ const ConfigGeneration = () => {
                         you need, select to generate the configuration
                         package.  This will make it available to download.
                     </Typography>
-                    {
-                        errorMessage ? <ErrorMessage/> : ''
-                    }
                     { generating ? <Generating/> : '' }
                 </CardContent>
                 <CardActions>
                     <Button onClick={() => generate()}>Generate</Button>
                 </CardActions>
             </Card>
+
+            <Snackbar
+                open={open}
+                autoHideDuration={6000}
+                onClose={handleClose}
+                message={errorMessage}
+                action={action}
+            />
+
         </>
     );
 }
