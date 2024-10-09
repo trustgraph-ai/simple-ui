@@ -2,11 +2,12 @@
 import React from 'react';
 
 import { FormGroup, FormControlLabel } from '@mui/material';
-import { Checkbox, Typography } from '@mui/material';
-import { Card, CardHeader, CardContent } from '@mui/material';
+import { Checkbox, Typography, ToggleButton } from '@mui/material';
+import { Card, CardHeader, CardContent, CardActions } from '@mui/material';
 import { Stack } from '@mui/material';
 import {
     Psychology,
+    Check,
 //    Spoke,
 //    Plumbing,
 //    Engineering,
@@ -74,14 +75,6 @@ const ParamsForm: React.FC = ({
         content : any;
     }) => {
         return (
-            <FormGroup>
-                <FormControlLabel
-                    control={
-                        <Checkbox
-                            checked={enabled}
-                            onChange={onChange}/>
-                    }
-                    label={
                         <Card sx={{ width: '16rem' }}>
                             <CardHeader
                               avatar={avatar}
@@ -95,10 +88,17 @@ const ParamsForm: React.FC = ({
                                 {content}
                                 </Typography>
                             </CardContent>
+                            <CardActions>
+                                <ToggleButton
+                                    value="check"
+                                    selected={enabled}
+                                    color="primary"
+                                    onChange={() => onChange()}
+                                >
+                                    <Check/>
+                                </ToggleButton>
+                            </CardActions>
                         </Card>
-                    }
-                />
-            </FormGroup>
         );
     };
 

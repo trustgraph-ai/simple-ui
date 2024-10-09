@@ -39,7 +39,7 @@ const PreparedConfig = () => {
                     title="Deployment configuration"
                 />
                 <CardContent>
-                  <Typography component="div" sx={{ fontSize: 16 }}>
+                    <Typography component="div" sx={{ fontSize: 16 }}>
                         2. Deployment configuration
                     </Typography>
                     <Typography variant="body2" sx={{ mt: 2, mb: 2}}>
