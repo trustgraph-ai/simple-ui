@@ -1,11 +1,11 @@
 
 import React from 'react';
 
-import { RocketLaunch } from '@mui/icons-material';
-
 import {
-    Typography, Card, CardContent, CardHeader
+    Typography, Card, CardContent, CardHeader, Box, Paper, Stack,
 } from '@mui/material';
+
+import { RocketLaunch } from '@mui/icons-material';
 
 interface DeploymentInstructionsProps {
 }
@@ -17,14 +17,20 @@ const DeploymentInstructions: React.FC<DeploymentInstructionsProps> = ({
 
         <>
 
-            <Card sx={{ minWidth: 275, mt: 4 }}>
-                <CardHeader
-                    avatar={<RocketLaunch color="primary" fontSize="large"/>}
-                    title="Launch"
-                />
-                <CardContent>
 
-                    <Typography variant="body2">
+            <Box>
+                <Paper sx={{ minWidth: 375, mt: 2, p: 2 }}>
+                    <Stack
+                        direction="row" spacing={2}
+                        alignItems="center"
+                    >
+                        <RocketLaunch color="primary" fontSize="large"/>
+                        <Typography variant="h6" component="h3">
+                            Launch
+                        </Typography>
+                    </Stack>
+
+                    <Typography variant="body2" sx={{ mt: 2}}>
 
                         When you download the deploy configuration, you will
                         have a ZIP file containing all the configuration
@@ -57,8 +63,8 @@ const DeploymentInstructions: React.FC<DeploymentInstructionsProps> = ({
 
                     </Typography>
 
-                </CardContent>
-            </Card>
+                </Paper>
+            </Box>
 
         </>
 

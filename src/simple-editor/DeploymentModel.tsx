@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Psychology } from '@mui/icons-material';
 import {
-    Typography, Card, CardContent, CardHeader
+    Typography, Card, CardContent, CardHeader, Paper, Box, Stack,
 } from '@mui/material';
 
 import { useModelParamsStore } from './state/ModelParams';
@@ -130,19 +130,22 @@ const DeploymentModel: React.FC<DeploymentModelProps> = ({
     return (
 
         <>
-
-            <Card sx={{ minWidth: 275, mt: 4 }}>
-                <CardHeader
-                    avatar={<Psychology color="primary" fontSize="large"/>}
-                    title="Model credentials"
-                />
-                <CardContent>
+            <Box>
+                <Paper sx={{ minWidth: 375, mt: 2, p: 2 }}>
+                    <Typography variant="h6" component="h3">
+                        <Stack
+                            direction="row" spacing={2}
+                            alignItems="center"
+                        >
+                            <Psychology color="primary" fontSize="large"/>
+                            <Box>Model credentials</Box>
+                        </Stack>
+                    </Typography>
                     <Typography variant="body2">
                         {instructions}
                     </Typography>
-                </CardContent>
-            </Card>
-
+                </Paper>
+            </Box>
         </>
 
     );

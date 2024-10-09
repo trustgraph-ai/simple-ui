@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import { Plumbing } from '@mui/icons-material';
 
 import {
-    Button, Typography, Card, CardContent, CardActions, CardHeader,
-    CircularProgress, Snackbar, IconButton, SnackbarCloseReason,
+    Button, Typography, Card, CardContent, CardActions, CardHeader, Paper,
+    CircularProgress, Snackbar, IconButton, SnackbarCloseReason, Box, Stack,
 } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
@@ -113,23 +113,29 @@ const ConfigGeneration = () => {
     return (
         <>
 
-            <Card sx={{ minWidth: 275, mt: 4 }}>
-                <CardHeader
-                    avatar={<Plumbing color="primary" fontSize="large"/>}
-                    title="Deployment configuration"
-                />
-                <CardContent>
-                    <Typography variant="body2">
+
+            <Box>
+                <Paper sx={{ minWidth: 375, mt: 2, p: 2 }}>
+                    <Stack
+                        direction="row" spacing={2}
+                        alignItems="center"
+                    >
+                        <Plumbing color="primary" fontSize="large"/>
+                        <Typography variant="h6" component="h3">
+                            <Box>Deployment configuration</Box>
+                        </Typography>
+                    </Stack>
+                    <Typography variant="body2" sx={{mt: 2}}>
                         When you have selected the configuration parameters
                         you need, select to generate the configuration
                         package.  This will make it available to download.
                     </Typography>
                     { generating ? <Generating/> : '' }
-                </CardContent>
-                <CardActions>
-                    <Button onClick={() => generate()}>Generate</Button>
-                </CardActions>
-            </Card>
+                    <Box sx={{mt: 1}}>
+                        <Button onClick={() => generate()}>Generate</Button>
+                    </Box>
+                </Paper>
+            </Box>
 
             <Snackbar
                 open={open}
