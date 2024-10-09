@@ -5,7 +5,7 @@ import { Plumbing } from '@mui/icons-material';
 
 import {
     Button, Typography, Card, CardContent, CardActions, CardHeader,
-    CircularProgress, Snackbar, IconButton,
+    CircularProgress, Snackbar, IconButton, SnackbarCloseReason,
 } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
@@ -84,12 +84,8 @@ const ConfigGeneration = () => {
 
     }
 
-    const handleClick = () => {
-        setOpen(true);
-    };
-
     const handleClose = (
-        event: React.SyntheticEvent | Event,
+        _event: React.SyntheticEvent | Event,
         reason?: SnackbarCloseReason,
     ) => {
         if (reason === 'clickaway') {
