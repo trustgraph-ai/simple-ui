@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Psychology } from '@mui/icons-material';
 import {
-    Typography, Card, CardContent, CardHeader, Paper, Box, Stack,
+    Typography, Paper, Box, Stack,
 } from '@mui/material';
 
 import { useModelParamsStore } from './state/ModelParams';
@@ -131,7 +131,7 @@ const DeploymentModel: React.FC<DeploymentModelProps> = ({
 
         <>
             <Box>
-                <Paper sx={{ minWidth: 375, mt: 2, p: 2 }}>
+                <Paper sx={{ minWidth: 375, mt: 2, p: 2 }} elevation={3}>
                     <Typography variant="h6" component="h3">
                         <Stack
                             direction="row" spacing={2}

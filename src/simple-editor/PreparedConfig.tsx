@@ -2,8 +2,7 @@
 import { Plumbing } from '@mui/icons-material';
 
 import {
-    Button, Typography, Card, CardContent, CardActions, CardHeader,
-    Alert,
+    Button, Typography, Alert, Paper, Box, Stack,
 } from '@mui/material';
 
 import { Check } from '@mui/icons-material';
@@ -36,12 +35,17 @@ const PreparedConfig = () => {
     return (
         <>
 
-            <Card sx={{ minWidth: 275, mt: 4 }}>
-                <CardHeader
-                    avatar={<Plumbing color="primary" fontSize="large"/>}
-                    title="Deployment configuration"
-                />
-                <CardContent>
+            <Box>
+                <Paper sx={{ minWidth: 375, mt: 2, p: 2 }} elevation={3}>
+                    <Stack
+                        direction="row" spacing={2}
+                        alignItems="center"
+                    >
+                        <Plumbing color="primary" fontSize="large"/>
+                        <Typography variant="h6" component="h3">
+                            Deployment configuration
+                        </Typography>
+                    </Stack>
                     <Typography variant="body2" sx={{ mt: 0, mb: 2}}>
                         <ul>
                             <li>Model deployment: {modelDeployment}</li>
@@ -55,13 +59,12 @@ const PreparedConfig = () => {
                     >
                         Configuration generation was successful
                     </Alert>
-                </CardContent>
-                <CardActions>
                     <Button variant="outlined" onClick={() => download()}>
                         Download
                     </Button>
-                </CardActions>
-            </Card>
+                </Paper>
+            </Box>
+
         </>
     );
 }

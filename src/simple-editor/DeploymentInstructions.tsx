@@ -2,7 +2,7 @@
 import React from 'react';
 
 import {
-    Typography, Card, CardContent, CardHeader, Box, Paper, Stack,
+    Typography, Box, Paper, Stack,
 } from '@mui/material';
 
 import { RocketLaunch } from '@mui/icons-material';
@@ -19,7 +19,7 @@ const DeploymentInstructions: React.FC<DeploymentInstructionsProps> = ({
 
 
             <Box>
-                <Paper sx={{ minWidth: 375, mt: 2, p: 2 }}>
+                <Paper sx={{ minWidth: 375, mt: 2, p: 2 }} elevation={3}>
                     <Stack
                         direction="row" spacing={2}
                         alignItems="center"

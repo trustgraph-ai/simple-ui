@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import { Plumbing } from '@mui/icons-material';
 
 import {
-    Button, Typography, Card, CardContent, CardActions, CardHeader, Paper,
-    CircularProgress, Snackbar, IconButton, SnackbarCloseReason, Box, Stack,
+    Button, Typography, Paper, CircularProgress, Snackbar, IconButton,
+    SnackbarCloseReason, Box, Stack,
 } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
@@ -115,7 +115,7 @@ const ConfigGeneration = () => {
 
 
             <Box>
-                <Paper sx={{ minWidth: 375, mt: 2, p: 2 }}>
+                <Paper sx={{ minWidth: 375, mt: 2, p: 2 }} elevation={3}>
                     <Stack
                         direction="row" spacing={2}
                         alignItems="center"
