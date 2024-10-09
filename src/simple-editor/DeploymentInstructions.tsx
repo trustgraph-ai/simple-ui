@@ -38,15 +38,20 @@ const DeploymentInstructions: React.FC<DeploymentInstructionsProps> = ({
                         Podman Compose.
                         Unzip the ZIP file...
 
-                        <pre>unzip deploy.zip
-                        </pre>
+                    </Typography>
+
+                    <pre>unzip deploy.zip
+                    </pre>
+
+                    <Typography variant="body2" sx={{ mt: 2}}>
 
                         and launch...
 
-                        <pre>docker compose -f docker-compose.yaml up -d
-                        </pre>
 
                     </Typography>
+
+                    <pre>docker compose -f docker-compose.yaml up -d
+                    </pre>
 
                     <Typography variant="body2">
 
@@ -55,13 +60,12 @@ const DeploymentInstructions: React.FC<DeploymentInstructionsProps> = ({
                         so that they are accessible from within containers.
                         This affects
                         the <code>grafana</code> and <code>prometheus</code> directories.
-                        
-                        <pre>chcon -Rt svirt_sandbox_file_t grafana prometheus<br/>
-                        chmod 755 prometheus/ grafana/ grafana/*/<br/>
-                        chmod 644 prometheus/* grafana/*/*
-                        </pre>
-
                     </Typography>
+                        
+                    <pre>chcon -Rt svirt_sandbox_file_t grafana prometheus<br/>
+                    chmod 755 prometheus/ grafana/ grafana/*/<br/>
+                    chmod 644 prometheus/* grafana/*/*
+                    </pre>
 
                 </Paper>
             </Box>
