@@ -9,6 +9,8 @@ import AdvancedOptions from './AdvancedOptions';
 import Deployment from './Deployment';
 import { useModelParamsStore } from './state/ModelParams';
 
+import Prompt from './Prompt';
+
 interface TabPanelProps {
     children?: React.ReactNode;
     tabId: string;
@@ -72,6 +74,12 @@ const Configuration: React.FC = () => {
     const advancedOptions
         = useModelParamsStore((state) => state.advancedOptions);
 
+    const definitionsPrompt
+        = useModelParamsStore((state) => state.definitionsPrompt);
+
+    const setDefinitionsPrompt
+        = useModelParamsStore((state) => state.setDefinitionsPrompt);
+
     return (
 
         <>
@@ -113,7 +121,15 @@ const Configuration: React.FC = () => {
                   Definitions prompt
                 </Typography>
 
-                <p>asdasdasd</p>
+                <Prompt
+                    value={definitionsPrompt}
+                    onChange={
+                        (v) => {
+                            console.log(v);
+                            setDefinitionsPrompt(v);
+                        }
+                    }
+                />
 
             </CustomTabPanel>
 
