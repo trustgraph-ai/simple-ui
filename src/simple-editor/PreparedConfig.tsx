@@ -2,8 +2,11 @@
 import { Plumbing } from '@mui/icons-material';
 
 import {
-    Button, Typography, Card, CardContent, CardActions, CardHeader
+    Button, Typography, Card, CardContent, CardActions, CardHeader,
+    Alert,
 } from '@mui/material';
+
+import { Check } from '@mui/icons-material';
 
 import { useModelParamsStore } from './state/ModelParams';
 
@@ -39,11 +42,7 @@ const PreparedConfig = () => {
                     title="Deployment configuration"
                 />
                 <CardContent>
-                    <Typography component="div" sx={{ fontSize: 16 }}>
-                        2. Deployment configuration
-                    </Typography>
-                    <Typography variant="body2" sx={{ mt: 2, mb: 2}}>
-                        Config has been generated for:
+                    <Typography variant="body2" sx={{ mt: 0, mb: 2}}>
                         <ul>
                             <li>Model deployment: {modelDeployment}</li>
                             <li>Model name: {modelName}</li>
@@ -51,6 +50,11 @@ const PreparedConfig = () => {
                             <li>Vector DB: {vectorDB}</li>
                         </ul>
                     </Typography>
+                    <Alert icon={<Check fontSize="inherit"/>}
+                        severity="success"
+                    >
+                        Configuration generation was successful
+                    </Alert>
                 </CardContent>
                 <CardActions>
                     <Button variant="outlined" onClick={() => download()}>
