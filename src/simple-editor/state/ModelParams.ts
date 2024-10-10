@@ -1,8 +1,6 @@
 
 import { create } from 'zustand'
 
-import * as prompts from '../prompts';
-
 interface ModelParams {
 
     graphStore : string;
@@ -17,15 +15,6 @@ interface ModelParams {
     deploymentConfig : string;
     configUrl : string;
 
-    definitionsPrompt : string;
-    relationshipsPrompt : string;
-    topicsPrompt : string;
-    knowledgeQueryPrompt : string;
-    documentQueryPrompt : string;
-    rowsPrompt : string;
-
-    advancedOptions : Set<string>;
-
     setGraphStore : (v : string) => void;
     setVectorDB : (v : string) => void;
     setChunkerType: (v : string) => void;
@@ -38,14 +27,6 @@ interface ModelParams {
     setDeploymentConfig : (v : string) => void;
     setConfigUrl : (v : string) => void;
 
-    setDefinitionsPrompt : (v : string) => void;
-    setRelationshipsPrompt : (v : string) => void;
-    setTopicsPrompt : (v : string) => void;
-    setKnowledgeQueryPrompt : (v : string) => void;
-    setDocumentQueryPrompt : (v : string) => void;
-    setRowsPrompt : (v : string) => void;
-
-    setAdvancedOptions : (v: Set<string>) => void;
 }
 
 export const useModelParamsStore = create<ModelParams>()(
@@ -62,14 +43,6 @@ export const useModelParamsStore = create<ModelParams>()(
         maxOutputTokens: 1000,
         deploymentConfig: "",
         configUrl: "",
-        definitionsPrompt: prompts.default_definition_prompt,
-        relationshipsPrompt: prompts.default_relationship_prompt,
-        topicsPrompt: prompts.default_topics_prompt,
-        knowledgeQueryPrompt: prompts.default_knowledge_query_prompt,
-        documentQueryPrompt: prompts.default_document_query_prompt,
-        rowsPrompt: prompts.default_rows_prompt,
-
-        advancedOptions: new Set<string>(""),
 
         setGraphStore: (v) => set(() => ({
 	    graphStore: v,
@@ -131,34 +104,6 @@ export const useModelParamsStore = create<ModelParams>()(
 
         setConfigUrl: (v) => set(() => ({
 	    configUrl: v
-	})),
-
-        setDefinitionsPrompt: (v) => set(() => ({
-	    definitionsPrompt: v
-	})),
-
-        setRelationshipsPrompt: (v) => set(() => ({
-	    relationshipsPrompt: v
-	})),
-
-        setTopicsPrompt: (v) => set(() => ({
-	    topicsPrompt: v
-	})),
-
-        setKnowledgeQueryPrompt: (v) => set(() => ({
-	    knowledgeQueryPrompt: v
-	})),
-
-        setDocumentQueryPrompt: (v) => set(() => ({
-	    documentQueryPrompt: v
-	})),
-
-        setRowsPrompt: (v) => set(() => ({
-	    rowsPrompt: v
-	})),
-
-        setAdvancedOptions: (v) => set(() => ({
-	    advancedOptions: v
 	})),
 
     })

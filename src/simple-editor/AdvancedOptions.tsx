@@ -18,35 +18,35 @@ import {
 } from '@mui/icons-material';
 
 import { useModelParamsStore } from './state/ModelParams';
+import {
+    useOptionsStore, DEFINITIONS_PROMPT, RELATIONSHIPS_PROMPT,
+    TOPICS_PROMPT, KNOWLEDGE_QUERY_PROMPT, DOCUMENT_QUERY_PROMPT,
+    ROWS_PROMPT,
+} from './state/Options';
 
 const ParamsForm: React.FC = ({
 }) => {
 
-    const DEFINITIONS_PROMPT = "definitions-prompt";
-    const RELATIONSHIPS_PROMPT = "relationships-prompt";
-    const TOPICS_PROMPT = "topics-prompt";
-    const KG_QUERY_PROMPT = "kg-query-prompt";
+    const options = useOptionsStore((state) => state.options);
 
-    const advancedOptions
-        = useModelParamsStore((state) => state.advancedOptions);
+    const setOptions = useOptionsStore((state) => state.setOptions);
 
-    const setAdvancedOptions
-        = useModelParamsStore((state) => state.setAdvancedOptions);
-
-    const definitions = advancedOptions.has(DEFINITIONS_PROMPT);
-    const relationships = advancedOptions.has(RELATIONSHIPS_PROMPT);
-    const topics = advancedOptions.has(TOPICS_PROMPT);
-    const kgQuery = advancedOptions.has(KG_QUERY_PROMPT);
+    const definitions = options.has(DEFINITIONS_PROMPT);
+    const relationships = options.has(RELATIONSHIPS_PROMPT);
+    const topics = options.has(TOPICS_PROMPT);
+    const kgQuery = options.has(KNOWLEDGE_QUERY_PROMPT);
+    const docQuery = options.has(DOCUMENT_QUERY_PROMPT);
+    const rows = options.has(ROWS_PROMPT);
 
     const set = (o : string, value : boolean) => {
         if (value) {
-            const opts = new Set(advancedOptions);
+            const opts = new Set(options);
             opts.add(o);
-            setAdvancedOptions(opts);
+            setOptions(opts);
         } else {
-            const opts = new Set(advancedOptions);
+            const opts = new Set(options);
             opts.delete(o);
-            setAdvancedOptions(opts);
+            setOptions(opts);
         }
     }
 
@@ -63,7 +63,15 @@ const ParamsForm: React.FC = ({
     };
 
     const onKgQuery = () => {
-        set(KG_QUERY_PROMPT, !kgQuery);
+        set(KNOWLEDGE_QUERY_PROMPT, !kgQuery);
+    };
+
+    const onDocQuery = () => {
+        set(DOCUMENT_QUERY_PROMPT, !docQuery);
+    };
+
+    const onRows = () => {
+        set(ROWS_PROMPT, !rows);
     };
 
     const Option = ({enabled, onChange, avatar, title, content} : {
@@ -74,37 +82,39 @@ const ParamsForm: React.FC = ({
         content : any;
     }) => {
         return (
-                        <Card sx={{ width: '16rem' }}>
-                            <CardHeader
-                              avatar={avatar}
-                              title={title}
-                            />
-                            <CardContent>
-                                <Typography
-                                    variant="body2"
-                                    sx={{ fontSize: 12 }}
-                                >
-                                {content}
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <ToggleButton
-                                    value="check"
-                                    selected={enabled}
-                                    color="primary"
-                                    onChange={() => onChange()}
-                                >
-                                    <Check/>
-                                </ToggleButton>
-                            </CardActions>
-                        </Card>
+            <Card sx={{ width: '16rem' }}>
+                <CardHeader
+                  avatar={avatar}
+                  title={title}
+                />
+                <CardContent>
+                    <Typography
+                        variant="body2"
+                        sx={{ fontSize: 12 }}
+                    >
+                    {content}
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <ToggleButton
+                        value="check"
+                        selected={enabled}
+                        color="primary"
+                        onChange={() => onChange()}
+                    >
+                        <Check/>
+                    </ToggleButton>
+                </CardActions>
+            </Card>
         );
     };
 
     return (
         <>
 
-            <Stack direction="row" spacing={2}>
+            <Stack direction="row" spacing={2}
+                sx={{flexWrap: 'wrap'}} useFlexGap
+            >
 
                 <Option
                     enabled={definitions}
@@ -145,7 +155,29 @@ const ParamsForm: React.FC = ({
                     avatar={<Psychology color="primary"/>}
                     title="Knowledge graph prompt"
                     content={
-                        'Tailor the default knowledge-extraction prompt'
+                        'Tailor the default knowledge-graph query prompt'
+                    }
+
+                />
+
+                <Option
+                    enabled={docQuery}
+                    onChange={onDocQuery}
+                    avatar={<Psychology color="primary"/>}
+                    title="Document prompt"
+                    content={
+                        'Tailor the default document query prompt'
+                    }
+
+                />
+
+                <Option
+                    enabled={rows}
+                    onChange={onRows}
+                    avatar={<Psychology color="primary"/>}
+                    title="Row extraction prompt"
+                    content={
+                        'Tailor the default row extraction prompt'
                     }
 
                 />
