@@ -8,7 +8,6 @@ import ParamsForm from './ParamsForm';
 import AdvancedOptions from './AdvancedOptions';
 import Deployment from './Deployment';
 
-import { useModelParamsStore } from './state/ModelParams';
 import { usePromptsStore } from './state/Prompts';
 import {
     useOptionsStore, DEFINITIONS_PROMPT, RELATIONSHIPS_PROMPT,

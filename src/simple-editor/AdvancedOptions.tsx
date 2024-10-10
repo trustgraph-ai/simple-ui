@@ -17,7 +17,6 @@ import {
 //    Polyline,
 } from '@mui/icons-material';
 
-import { useModelParamsStore } from './state/ModelParams';
 import {
     useOptionsStore, DEFINITIONS_PROMPT, RELATIONSHIPS_PROMPT,
     TOPICS_PROMPT, KNOWLEDGE_QUERY_PROMPT, DOCUMENT_QUERY_PROMPT,
